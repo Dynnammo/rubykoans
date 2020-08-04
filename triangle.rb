@@ -14,12 +14,18 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
+  args = [a, b, c]
+  raise TriangleError.new unless (
+    args.select(&:zero?).empty? &&
+    args.select(&:negative?).empty? &&
+    args.sort![-1] < args[0..1].sum
+  )
   triangle_nature = {
     1 => :equilateral,
     2 => :isosceles,
     3 => :scalene
   }
-  return triangle_nature[[a,b,c].uniq.length]
+  return triangle_nature[args.uniq.length]
 end
 
 # Error class used in part 2.  No need to change this code.
