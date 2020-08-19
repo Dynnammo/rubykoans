@@ -5,13 +5,12 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 class DiceSet
   attr_reader :values
 
-  def initialize(values = [])
-    @values = values
+  def roll(number_of_launch = 5)
+    @values = (1..number_of_launch).map { (rand(6) + Time.now.to_i) % 6 + 1 }
   end
 
-  def roll(number_of_launch)
-    @values = []
-    number_of_launch.times { @values << ((rand(1..6) + Time.now.to_i) % 6 + 1) }
+  def to_s
+    "Dices : #{@values.join(" ")}"
   end
 end
 

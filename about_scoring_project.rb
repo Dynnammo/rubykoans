@@ -29,9 +29,9 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 #
 # Your goal is to write the score method.
 
-def score(dice)
+def score(dices)
   score, count = 0, {}
-  (1..6).map { |i| count[i] = dice.count(i) }
+  (1..6).map { |i| count[i] = dices.count(i) }
 
   # Count 1s and 5s
   score += [0, 100, 200, 1000, 1100, 1200][count[1]]
@@ -40,6 +40,20 @@ def score(dice)
   
   # Count triples
   score += count.map { |k, v| count[k] = v >=3 ? 100 * k : 0 }.sum
+end
+
+def number_of_remaining_dices(dices)
+  count = {}
+  (1..6).map { |i| count[i] = dices.count(i) }
+
+  # Delete 1s and 5s
+  count[1] = 0
+  count[5] = 0
+  
+  # Delete triples
+  count.each { |k,v| count[k] -= 3 if v >= 3 }
+
+  count.values.sum
 end
 
 class AboutScoringProject < Neo::Koan

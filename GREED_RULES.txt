@@ -18,7 +18,7 @@ scored according to the following:
   One   1   =>  100 points
   One   5   =>   50 points
 
-A single die can only be counted once in each roll.  For example,
+A single dice can only be counted once in each roll.  For example,
 a "5" can only count as part of a triplet (contributing to the 500
 points) or as a single 50 points, but not both in the same roll.
 
